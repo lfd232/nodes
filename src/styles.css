@@ -1,0 +1,94 @@
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --ink: #1d2433;
+  --muted: #6b7385;
+  --line: #dcdad2;
+  --accent: #2f5d62;
+  --accent-ink: #ffffff;
+  --danger: #a63a2b;
+  --danger-bg: #fbeceA;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.app { max-width: 640px; margin: 0 auto; padding: 40px 20px 80px; }
+h1 { font-size: 2rem; margin: 0 0 24px; letter-spacing: -0.01em; }
+
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { filter: brightness(1.1); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button:focus-visible, input:focus-visible { outline: 3px solid #8fb8bd; outline-offset: 2px; }
+
+.task-form { margin-bottom: 28px; }
+.task-form label { display: block; font-weight: 600; margin-bottom: 6px; }
+.task-form-row { display: flex; gap: 8px; }
+.task-form input {
+  flex: 1;
+  font: inherit;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.task-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.task-main { display: flex; flex-direction: column; min-width: 0; }
+.task-title { font-weight: 600; overflow-wrap: anywhere; }
+.task-meta { font-size: 0.85rem; color: var(--muted); }
+.task.done .task-title { text-decoration: line-through; color: var(--muted); }
+.badge {
+  font-size: 0.85rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+.state { margin: 16px 0; }
+.state-error {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid #e3b9b2;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.state-error p { margin: 0 0 6px; }
+.muted { color: var(--muted); }
+
+.spinner {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  vertical-align: -2px;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } }
